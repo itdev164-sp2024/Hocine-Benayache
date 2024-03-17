@@ -1,8 +1,20 @@
+/**
+ * Configure your Gatsby site with this file.
+ *
+ * See: https://www.gatsbyjs.com/docs/reference/config-files/gatsby-config/
+ */
 
+require('dotenv').config({
+  path: `.env.${process.env.NODE_ENV}`
+})
+
+/**
+ * @type {import('gatsby').GatsbyConfig}
+ */
 module.exports = {
   siteMetadata: {
     title: `Gatsby Blog`,
-    description: ``,
+    description: `Kick off your next, great Gatsby project with this default starter.`,
     author: `Hocine Benayache`,
     siteUrl: `https://gatsbystarterdefaultsource.gatsbyjs.io/`,
     contact: {
@@ -13,12 +25,12 @@ module.exports = {
   },
   plugins: [
     {
-      resolve: `gatsby-source-contentful`,
+      resolve: 'gatsby-source-contentful',
       options: {
-        spaceId: `suojjqm9wkfe`,
-        accessToken: `rTjMQPuJBr1uKPem9LhMtrmykyjnUhqMxtXSb4q6zE4`
-    }
-  },
+        spaceId: `${process.env.SPACE_ID}`,
+        accessToken: `${process.env.ACCESS_TOKEN}`
+      }
+    },
     `gatsby-plugin-image`,
     {
       resolve: `gatsby-source-filesystem`,
@@ -27,6 +39,7 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
+    `gatsby-transformer-remark`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
